@@ -4,12 +4,13 @@ import { Link, BrowserRouter as Router, Route } from 'react-router-dom';
 import _ from 'lodash';
 import $ from 'jquery';
 import api from './api';
+import Header from './Header'
 
 import { Provider } from 'react-redux';
 
 
 
-export default function root_init(node) {
+export default function root_init(node, store) {
     ReactDOM.render(
     <Provider store={store}>
       <Root  />

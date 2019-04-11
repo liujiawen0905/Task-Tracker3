@@ -22,7 +22,7 @@ import _ from "lodash";
 // import socket from "./socket"
 
 
-import root_init from "./root";
+import root_init from "./root.jsx";
 import store from './store';
 
 $(() => {

@@ -43,7 +43,8 @@ function root_reducer(state0, action) {
   console.log("reducer", state0, action);
 
   let reducer = combineReducers({tasks, users, session, 
-                                 login_form, add_item_forms});
+                                 login_form, add_item_forms}
+                                 );
   let state1 = reducer(state0, action);
 
   console.log("reducer1", state1);
