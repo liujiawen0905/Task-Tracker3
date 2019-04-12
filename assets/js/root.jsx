@@ -5,7 +5,7 @@ import _ from 'lodash';
 import $ from 'jquery';
 import api from './api';
 
-import Header from './Header'
+import Header from './header'
 import UserList from './user_list.jsx';
 import TaskList from './task_list.jsx';
 

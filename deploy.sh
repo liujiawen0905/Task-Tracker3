@@ -11,7 +11,6 @@ mkdir -p ~/.config
 mkdir -p priv/static
 mix deps.get
 mix compile
-(cd assets && npm install)
 (cd assets && webpack --mode production)
 mix phx.digest
 
@@ -23,4 +22,4 @@ mix release
 
 echo "Starting app..."
 
-_build/prod/rel/task_tracker3/bin/task_tracker3 foreground
+_build/prod/rel/spa/bin/spa foreground
