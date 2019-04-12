@@ -1,7 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
 import { connect } from 'react-redux';
-import api from './api';
 
 function TaskList(props) {
   let {tasks, counts, dispatch} = props;
@@ -11,9 +10,19 @@ function TaskList(props) {
     return <Task key={t.id} task={t} count={count} dispatch={dispatch} />
   });
 
-  return <div className="row">
-    {prods}
-  </div>;
+  return  <div>
+    <div className="row"> {ts} </div>
+      <h1>New Task</h1>
+      <div>
+        <h4> Name </h4> 
+        <input placeholder="title" className="form-control"/> 
+        <h4> Desc </h4> 
+        <input placeholder="description" className="form-control"/>
+        <h4>Time</h4>
+        <input type="number" step="15" placeholder="time" className="form-control" min="0"/>
+        <input type="number" placeholder="user id" className="form-control"/>
+      </div>
+    </div>;
 }
 
 function Task(props) {

@@ -17,6 +17,10 @@ defmodule SpaWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/users", PageController, :index
+    get "/tasks", PageController, :index
+    get "/users/new", PageController, :index
+    get "/tasks/new", PageController, :index
   end
 
 

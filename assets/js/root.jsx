@@ -4,7 +4,10 @@ import { Link, BrowserRouter as Router, Route } from 'react-router-dom';
 import _ from 'lodash';
 import $ from 'jquery';
 import api from './api';
+
 import Header from './Header'
+import UserList from './user_list.jsx';
+import TaskList from './task_list.jsx';
 
 import { Provider } from 'react-redux';
 
@@ -21,6 +24,10 @@ export default function root_init(node, store) {
   class Root extends React.Component {
     constructor(props) {
       super(props);
+      this.state = {
+        users: props.tasks,
+        tasks: []
+      }
       api.fetch_users();
       api.fetch_tasks();
     }
@@ -53,15 +60,16 @@ export default function root_init(node, store) {
   
   
     render() {
+      let { users, tasks } = this.state
       return <div>
         <Router>
           <div>
             <Header root={this} />
             <Route path="/tasks" exact={true} render={() =>
-                  <TaskList task={this.state.tasks} />
+                  <TaskList tasks={tasks} />
                 } />
             <Route path="/users" exact={true} render={() =>
-                  <UserList users={this.state.users} />
+                  <UserList users={users} />
                 }/>
           </div>
         </Router>

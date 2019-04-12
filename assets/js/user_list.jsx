@@ -10,7 +10,7 @@ export default connect(({users}) => { return {users};})((props) => {
         <thead>
           <tr>
             <th>email</th>
-            <th>admin?</th>
+            <th>admin</th>
           </tr>
         </thead>
         <tbody>

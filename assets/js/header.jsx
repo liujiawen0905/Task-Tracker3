@@ -24,7 +24,7 @@ export default function Header(props) {
 
     return <div className="row my-2">
     <div className="col-4">
-      <h1>Task Tracker</h1>
+      <h1>Task Tracker Spa</h1>
     </div>
     <div className="col-4">
       <p>
