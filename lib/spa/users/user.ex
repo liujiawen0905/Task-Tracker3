@@ -13,6 +13,8 @@ defmodule Spa.Users.User do
 
   @doc false
   def changeset(user, attrs) do
+    IO.inspect(attrs, label: ">>>>> changeset")
+    attrs = Map.put(attrs, "password_hash", Argon2.hash_pwd_salt(attrs["password"]))
     user
     |> cast(attrs, [:email, :password_hash, :admin])
     |> validate_required([:email, :password_hash, :admin])

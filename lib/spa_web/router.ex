@@ -21,6 +21,8 @@ defmodule SpaWeb.Router do
     get "/tasks", PageController, :index
     get "/users/new", PageController, :index
     get "/tasks/new", PageController, :index
+    get "/register_user", PageController, :index
+    get "/create_task", PageController, :index
   end
 
 

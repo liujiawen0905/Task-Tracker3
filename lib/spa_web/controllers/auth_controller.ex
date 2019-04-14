@@ -12,6 +12,7 @@ defmodule SpaWeb.AuthController do
         data: %{
           token: Phoenix.Token.sign(SpaWeb.Endpoint, "user_id", user.id),
           user_id: user.id,
+          email: email
         }
       }
 

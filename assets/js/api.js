@@ -59,6 +59,59 @@ class TheServer {
     );
   }
 
+  delete_session() {
+    store.dispatch({
+      type: 'DELETE_SESSION',
+    });
+  }
+
+  create_user(email, password) {
+    console.log(email);
+    console.log(password);
+    this.send_post(
+        "/api/v1/users", {
+            user: { email, password }
+        },
+        (resp) => {
+            store.dispatch({
+                type: 'NEW_USER',
+                data: resp.data,
+            });
+          this.create_session(email, password);
+        }
+    );
 }
 
+create_task(name, desc, time, status, user_id) {
+  this.send_post(
+    "/api/v1/tasks",{
+      task: {name, desc, time, status, user_id}
+  },
+    (resp) => {
+      store.dispatch({
+        type: 'NEW_TASK',
+        data: resp.data,
+      });
+    }
+  );
+}
+
+delete_task(id) {
+  $.ajax('/api/v1/tasks/' + id, {
+    method: "delete",
+    dataType: "json",
+    contentType: "application/json; charset=UTF-8",
+    data: "",
+    success: (resp) => {
+      store.dispatch({
+        type: 'DELETE_TASK',
+        task_id: id,
+      });
+    }
+  });
+}
+
+
+
+}
 export default new TheServer();

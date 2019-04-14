@@ -1,59 +1,71 @@
 import React from 'react';
 import _ from 'lodash';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import api from './api.js';
 
 function TaskList(props) {
-  let {tasks, counts, dispatch} = props;
+  console.log("Task List props", props);
+  
+  let {tasks, session, users} = props;
 
   let ts = _.map(tasks, (t) => {
-    let count = counts.get(t.id) || 1;
-    return <Task key={t.id} task={t} count={count} dispatch={dispatch} />
+    return <Task key={t.id} task={t} users={users} />
   });
 
-  return  <div>
-    <div className="row"> {ts} </div>
-      <h1>New Task</h1>
-      <div>
-        <h4> Name </h4> 
-        <input placeholder="title" className="form-control"/> 
-        <h4> Desc </h4> 
-        <input placeholder="description" className="form-control"/>
-        <h4>Time</h4>
-        <input type="number" step="15" placeholder="time" className="form-control" min="0"/>
-        <input type="number" placeholder="user id" className="form-control"/>
-      </div>
+  if (session) {
+    return  <div>
+    <table className="table">
+      <thead>
+        <tr>
+          <th> Name </th>
+          <th> Desc </th>
+          <th> Status </th>
+          <th> Time </th>
+        </tr>
+      </thead>
+      <tbody>{ts}</tbody>
+    </table>
+    <Link className="btn btn-secondary" to={"/create_task"}> Assign Task </Link>
     </div>;
+  } 
+  
+  
+  else {
+    return  <div>
+    <table className="table">
+      <thead>
+        <tr>
+          <th> Name </th>
+          <th> Desc </th>
+          <th> Status </th>
+          <th> Time </th>
+        </tr>
+      </thead>
+      <tbody>{ts}</tbody>
+    </table>
+    </div>;
+  }
 }
 
 function Task(props) {
-  let {task, count, dispatch} = props;
-  function update(ev) {
-    let action = {
-      type: 'UPDATE_ADD_CART_FORM',
-      task_id: task.id,
-      count: ev.target.value,
-    };
-    dispatch(action);
-  }
-  return <div className="card col-4">
-    <div className="card-body">
-      <h2 className="card-title">{task.name}</h2>
-      <p className="card-text"> {task.desc} <br/> </p>
-      <div className="form-inline">
-        <div className="form-group">
-          <input type="number" className="form-control col-3 m-1" value={count}
-                 onChange={update} />
-        </div>
-      </div>
-    </div>
-  </div>;
+  let {task, users} = props;
+  console.log("checking users!!!!", users);
+  return <tr>
+      <td> {task.name}</td>
+      <td> {task.desc}</td>
+      <td> {String(task.status)}</td>
+      <td> {task.time}</td>
+      <td> <button className="btn btn-danger" onClick={() => { api.delete_task(task.id)}}> Delete </button> </td>
+    </tr>;
 }
 
 function state2props(state) {
   console.log("rerender", state);
   return {
     tasks: state.tasks,
-    counts: state.add_item_forms,
+    session: state.session,
+    users: state.users
   };
 }
 

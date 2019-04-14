@@ -12,6 +12,7 @@ defmodule SpaWeb.TaskController do
   end
 
   def create(conn, %{"task" => task_params}) do
+    IO.inspect(task_params, label: ">>>>>>>")
     with {:ok, %Task{} = task} <- Tasks.create_task(task_params) do
       conn
       |> put_status(:created)

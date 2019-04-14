@@ -51,7 +51,7 @@ defmodule Spa.Users do
   """
   def create_user(attrs \\ %{}) do
     %User{}
-    |> User.changeset(attrs)
+    |> User.changeset(attrs |> IO.inspect(label: ">>>>> create_user"))
     |> Repo.insert()
   end
 

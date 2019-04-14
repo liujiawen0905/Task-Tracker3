@@ -3,14 +3,16 @@ import ReactDOM from 'react-dom';
 import { Link, BrowserRouter as Router, Route } from 'react-router-dom';
 import _ from 'lodash';
 import $ from 'jquery';
-import api from './api';
+
+import api from './api.js';
 
 import Header from './header'
 import UserList from './user_list.jsx';
 import TaskList from './task_list.jsx';
+import RegisterUser from './register_user.jsx'
+import CreateTask from './create_task.jsx'
 
 import { Provider } from 'react-redux';
-
 
 
 export default function root_init(node, store) {
@@ -25,7 +27,7 @@ export default function root_init(node, store) {
     constructor(props) {
       super(props);
       this.state = {
-        users: props.tasks,
+        users: [],
         tasks: []
       }
       api.fetch_users();
@@ -71,6 +73,12 @@ export default function root_init(node, store) {
             <Route path="/users" exact={true} render={() =>
                   <UserList users={users} />
                 }/>
+            <Route path="/register_user" exact={true} render={() =>
+                  <RegisterUser />
+                }/>
+            <Route path="/create_task" exact={true} render={() =>
+                  <CreateTask />
+                }/>    
           </div>
         </Router>
       </div>;
