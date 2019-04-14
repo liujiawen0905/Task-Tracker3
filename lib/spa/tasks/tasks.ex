@@ -37,6 +37,11 @@ defmodule Spa.Tasks do
   """
   def get_task!(id), do: Repo.get!(Task, id)
 
+  def get_task(id) do
+    Repo.get(Task, id)
+    |> Repo.preload([:user])
+  end
+
   @doc """
   Creates a task.
 
