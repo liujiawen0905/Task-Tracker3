@@ -35,6 +35,7 @@ function create_task() {
     let time = $("#create-task-time").val();
     let status = $('#create-task-status').is(":checked")
     let user_id = $('#create-task-user').val();
+    console.log(">>>>>>>>>>>>>>check user_id", user_id);
     api.create_task(name, desc, time, status, user_id);
 }
 

@@ -83,6 +83,7 @@ class TheServer {
 }
 
 create_task(name, desc, time, status, user_id) {
+  console.log("api user_id", user_id);
   this.send_post(
     "/api/v1/tasks",{
       task: {name, desc, time, status, user_id}

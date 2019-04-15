@@ -10,7 +10,7 @@ function TaskList(props) {
   let {tasks, session, users} = props;
 
   let ts = _.map(tasks, (t) => {
-    return <Task key={t.id} task={t} users={users} />
+    return <Task key={t.id} task={t} users={users} session={session}/>
   });
 
   if (session) {
@@ -49,15 +49,37 @@ function TaskList(props) {
 }
 
 function Task(props) {
-  let {task, users} = props;
-  console.log("checking users!!!!", users);
-  return <tr>
-      <td> {task.name}</td>
-      <td> {task.desc}</td>
-      <td> {String(task.status)}</td>
-      <td> {task.time}</td>
-      <td> <button className="btn btn-danger" onClick={() => { api.delete_task(task.id)}}> Delete </button> </td>
-    </tr>;
+  let {task, session} = props;
+  if (session) {
+    if (session.user_id == task.id) {
+      return <tr>
+        <td> {task.name}</td>
+        <td> {task.desc}</td>
+        <td> {String(task.status)}</td>
+        <td> {task.time}</td>
+        <td> <button className="btn btn-danger" onClick={() => { api.delete_task(task.id)}}> Delete </button> </td>
+      </tr>;
+    }
+  
+    else {
+      return <tr>
+        <td> {task.name}</td>
+        <td> {task.desc}</td>
+        <td> {String(task.status)}</td>
+        <td> {task.time}</td>
+      </tr>;
+    }
+  }
+
+  else {
+    return <tr>
+        <td> {task.name}</td>
+        <td> {task.desc}</td>
+        <td> {String(task.status)}</td>
+        <td> {task.time}</td>
+      </tr>;
+  }
+  
 }
 
 function state2props(state) {

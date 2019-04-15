@@ -11,6 +11,7 @@ function Header(props) {
     
     
     let session_info;
+    let navigation_bar
     if (session == null) {
       session_info = 
       <div className="form-inline my-1">
@@ -19,6 +20,8 @@ function Header(props) {
         <button className="btn btn-secondary" onClick={() => login()}>Login</button>
         <Link className="btn btn-secondary" to={"/register_user"}> register </Link>
       </div>;
+
+      navigation_bar = <p> <Link to={"/users"}>Users</Link> </p>
     }
     else {
       session_info = 
@@ -26,7 +29,15 @@ function Header(props) {
         <p>Logged in as {session.email}</p>
         <button onClick={() => api.delete_session()}className="btn btn-secondary">LogOut</button>
       </div>
+
+      navigation_bar =
+      <p>
+        <Link to={"/tasks"}>Tasks</Link> 
+        &nbsp; | &nbsp;
+        <Link to={"/users"}>Users</Link>
+      </p>
     }
+
 
 
     return <div className="row my-2">
@@ -34,11 +45,7 @@ function Header(props) {
       <h1>Task Tracker SPA</h1>
     </div>
     <div className="col-3">
-      <p>
-        <Link to={"/tasks"}>Tasks</Link> 
-        &nbsp; | &nbsp;
-        <Link to={"/users"}>Users</Link>
-      </p>
+      {navigation_bar}
     </div>
     <div className="col-3">
       {session_info}

@@ -14,7 +14,7 @@ function RegisterUser(props) {
     <input id="register-password" type="password" placeholder="password"/>
     <br></br>
     <Link to='/users'>
-    <button className="btn btn-secondary" onClick={() => register()}>submit</button>
+    <button className="btn btn-primary" onClick={() => register()}>submit</button>
     </Link>
     </div>
   }
