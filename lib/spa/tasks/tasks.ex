@@ -39,7 +39,7 @@ defmodule Spa.Tasks do
 
   def get_task(id) do
     Repo.get(Task, id)
-    |> Repo.preload([:user])
+    |> Repo.preload([:users])
   end
 
   @doc """
