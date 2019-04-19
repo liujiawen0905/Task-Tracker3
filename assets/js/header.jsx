@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 
 function Header(props) {
     let {session} = props;
-    console.log(">>>>> sessions", session);
+    console.log(">>>>> sessions in header", session);
     
     
     let session_info;

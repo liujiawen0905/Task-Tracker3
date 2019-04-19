@@ -11,10 +11,13 @@ defmodule SpaWeb.TaskView do
   end
 
   def render("task.json", %{task: task}) do
+    IO.inspect(task, label: ">>>>>>>task_view!!!!!!!!")
     %{id: task.id,
       desc: task.desc,
       name: task.name,
       status: task.status,
-      time: task.time}
+      time: task.time,
+      user_id: task.user_id
+    }
   end
 end

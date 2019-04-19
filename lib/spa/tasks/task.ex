@@ -14,6 +14,7 @@ defmodule Spa.Tasks.Task do
 
   @doc false
   def changeset(task, attrs) do
+    IO.inspect(attrs, label: ">>>>> changeset tasks")
     task
     |> cast(attrs, [:desc, :name, :status, :time, :user_id])
     |> validate_required([:desc, :name, :status, :time, :user_id])

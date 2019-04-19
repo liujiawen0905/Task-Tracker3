@@ -9,6 +9,7 @@ import deepFreeze from 'deep-freeze';
 function tasks(state = [], action) {
   switch (action.type)  {
     case 'TASK_LIST':
+    console.log("The following are task_list in store JS", action.data);
       return action.data;
     case 'NEW_TASK':
       return state.concat(action.data);
@@ -21,11 +22,8 @@ function tasks(state = [], action) {
 function users(state = [], action) {
   switch (action.type) {
     case 'USER_LIST':
-    console.log("USER!!!!LIST!!!!!!!!!!");
       return action.data;
     case 'NEW_USER':
-    console.log("!!!!!!!!!!!!!!!!!");
-    console.log(state.concat(action.data));
       return state.concat(action.data);
   }
   return state;

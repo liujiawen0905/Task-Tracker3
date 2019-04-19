@@ -12,9 +12,40 @@ function TaskList(props) {
   let ts = _.map(tasks, (t) => {
     return <Task key={t.id} task={t} users={users} session={session}/>
   });
-
+  
+  console.log("inspect session!!!", session);
+  console.log("inspect tasks element in task_list", tasks);
+  
   if (session) {
+
+    let cur_ts = _.filter(tasks, (t) => {
+      return session.user_id == t.user_id;
+    });
+
+    console.log("this is cur_ts", cur_ts);
+    
+  
+    let my_ts = _.map(cur_ts, (t) => {
+      return <Task key={t.id} task={t} users={users} session={session}/>
+    });
+    
     return  <div>
+    <div>
+    <h2>My Tasks</h2>
+    <table className="table">
+      <thead>
+        <tr>
+          <th> Name </th>
+          <th> Desc </th>
+          <th> Status </th>
+          <th> Time </th>
+        </tr>
+      </thead>
+      <tbody>{my_ts}</tbody>
+    </table>
+    </div>
+    <div>
+    <h2>All Tasks</h2>
     <table className="table">
       <thead>
         <tr>
@@ -27,6 +58,7 @@ function TaskList(props) {
       <tbody>{ts}</tbody>
     </table>
     <Link className="btn btn-secondary" to={"/create_task"}> Assign Task </Link>
+    </div>
     </div>;
   } 
   
@@ -51,7 +83,7 @@ function TaskList(props) {
 function Task(props) {
   let {task, session} = props;
   if (session) {
-    if (session.user_id == task.id) {
+    if (session.user_id == task.user_id) {
       return <tr>
         <td> {task.name}</td>
         <td> {task.desc}</td>
@@ -79,7 +111,6 @@ function Task(props) {
         <td> {task.time}</td>
       </tr>;
   }
-  
 }
 
 function state2props(state) {

@@ -18,7 +18,7 @@ defmodule Spa.Tasks do
 
   """
   def list_tasks do
-    Repo.all(Task)
+    Repo.all(Task) |> IO.inspect(label: ">>>>> list_tasks");
   end
 
   @doc """

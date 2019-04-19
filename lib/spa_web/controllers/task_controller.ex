@@ -8,11 +8,11 @@ defmodule SpaWeb.TaskController do
 
   def index(conn, _params) do
     tasks = Tasks.list_tasks()
+    IO.inspect(tasks, label: ">>>>>>>task_controller_indexxxxxx")
     render(conn, "index.json", tasks: tasks)
   end
 
   def create(conn, %{"task" => task_params}) do
-    IO.inspect(task_params, label: ">>>>>>>task_controller")
     with {:ok, %Task{} = task} <- Tasks.create_task(task_params) do
       conn
       |> put_status(:created)

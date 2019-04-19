@@ -66,8 +66,6 @@ class TheServer {
   }
 
   create_user(email, password) {
-    console.log(email);
-    console.log(password);
     this.send_post(
         "/api/v1/users", {
             user: { email, password }
@@ -92,6 +90,7 @@ create_task(name, desc, time, status, user_id) {
       store.dispatch({
         type: 'NEW_TASK',
         data: resp.data,
+        
       });
     }
   );

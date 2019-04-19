@@ -32,6 +32,7 @@ export default function root_init(node, store) {
       }
       api.fetch_users();
       api.fetch_tasks();
+      console.log("tasks in root", this.state.tasks);
     }
   
     fetch_tasks() {
